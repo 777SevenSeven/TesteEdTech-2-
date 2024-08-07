@@ -1,39 +1,43 @@
-function criarCookie(nome, valor, expira) { //pra criar um cookie, eu preciso saber o nome do cookie, o quê ele guarda, e quando o cookie irá se expirar
-    let dtExpira = ""; //eu inicializo a data de vencimento com um valor vazio
-    if (expira) { //se a data de expirar, foi passada: 
-        dtExpira = "expires=" + expira + "; "; //ele deixa ela formatadinha bonitin
+function criarCookie(nome, valor, expira) {
+    // Cria um cookie com o nome, valor e data de expiração fornecidos.
+    let dtExpira = ""; // Inicializa a data de expiração com um valor vazio.
+    if (expira) { // Se a data de expiração for fornecida:
+        dtExpira = "expires=" + expira + "; "; // Formata a data de expiração.
     }
-    document.cookie = nome + "=" + encodeURIComponent(valor) + "; " + dtExpira + "path=/"; //formatei o arquivo do cookie passando as informações que ele deseja
+    // Cria o cookie com o nome, valor e a data de expiração formatada, se fornecida.
+    document.cookie = nome + "=" + encodeURIComponent(valor) + "; " + dtExpira + "path=/";
 }
 
-function lerCookie(nome) { //ler os cookies bonitin
-    let vnome = nome + "="; //iniciei o valor do nome já o formatando.
-    let ca = document.cookie.split(";"); //aqui estou dizendo que quero que seja um array de cookies na váriavel ca
-    for (var i = 0; i < ca.length; i++) { //um loop para capturar os cookies existentes
-        var c = ca[i].trim(); //aqui ele retira o espaço em branco no final de cada string dos cookie
+function lerCookie(nome) {
+    // Lê o valor do cookie com o nome fornecido.
+    let vnome = nome + "="; // Formata o nome do cookie.
+    let ca = document.cookie.split(";"); // Divide os cookies em um array.
+    for (var i = 0; i < ca.length; i++) { // Itera pelos cookies.
+        var c = ca[i].trim(); // Remove espaços em branco no início e no final da string.
         if (c.indexOf(vnome) == 0) {
-            return decodeURIComponent(c.substring(vnome.length)); //então ele está botando no espaço vázio que o trim tirou, o nome do cookie.
+            // Retorna o valor do cookie decodificado.
+            return decodeURIComponent(c.substring(vnome.length));
         }
     }
-    return "";
+    return ""; // Retorna uma string vazia se o cookie não for encontrado.
 }
 
+function verificarCookie() {
+    // Verifica se o cookie de nome "username" existe e o utiliza.
+    let username = lerCookie("username");
+    if (username !== "") { // Se o cookie já existe:
+        alert("Bem-vindo novamente " + username); // Exibe uma mensagem de boas-vindas.
+    } else {
+        // Se o cookie não existir, solicita o nome do usuário.
+        username = prompt("Digite seu nome:", "");
+        if (username !== "" && username !== null) { // Se um nome válido for fornecido:
+            let expira = new Date(); // Obtém a data atual.
+            expira.setFullYear(expira.getFullYear() + 10); // Define a expiração para 10 anos no futuro.
+            criarCookie("username", username, expira.toUTCString()); // Cria o cookie com a data de expiração formatada.
+        }
+    }
+}
 
 window.onload = function() {
-    verificarCookie();
+    verificarCookie(); // Chama a função de verificação de cookies ao carregar a página.
 };
-
-function verificarCookie() { //verificar os cookies e já adiciona-los à página
-    let username = lerCookie("username"); // inicializei a váriavel username do qual desejo usar no cookie (contexto de usuário da página)
-    if (username !== "") { //caso o username for diferente de vazio
-        alert("Bem-vindo novamente " + username); //aqui está o nome do menó sendo puxado graças ao cookie
-    } else {
-        username = prompt("Digite seu nome:", ""); //caso contrario: ele terá que dar o nome
-        if (username !== "" && username !== null) { //caso o nome foi dado certin, ele irá dar a data de vencimento do cookie
-            let expira = new Date(); //aqui ele puxa a data do pc
-            expira.setFullYear(expira.getFullYear() + 10); //dei mais 10 anos de validade
-            criarCookie("username", username, expira.toUTCString()); //o "toUTCString" ele pega a data e transforma em string formatada em UTC
-        }
-    }
-}
-
