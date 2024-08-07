@@ -18,6 +18,11 @@ function lerCookie(nome) { //ler os cookies bonitin
     return "";
 }
 
+
+window.onload = function() {
+    verificarCookie();
+};
+
 function verificarCookie() { //verificar os cookies e já adiciona-los à página
     let username = lerCookie("username"); // inicializei a váriavel username do qual desejo usar no cookie (contexto de usuário da página)
     if (username !== "") { //caso o username for diferente de vazio
@@ -31,3 +36,4 @@ function verificarCookie() { //verificar os cookies e já adiciona-los à págin
         }
     }
 }
+
