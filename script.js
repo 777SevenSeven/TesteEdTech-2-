@@ -30,16 +30,18 @@ function verificarCookie() {
     // Verifica se o cookie de nome "username" existe e o utiliza.
     let email = lerCookie("email");
     let password = lerCookie("password");
-    if (email !== "") { // Se o cookie já existe:
+    if (email !== "" && password !== "") { // Se o cookie já existe:
         alert("Bem-vindo novamente " + email); // Exibe uma mensagem de boas-vindas.
+        alert("Confirmando sua senha: " + password);
     } else {
         // Se o cookie não existir, solicita o nome do usuário.
         email = inputEmail.value;
         password = inputPassword.value;
-        if (email !== "" && email !== null) { // Se um nome válido for fornecido:
+        if ((email !== "" && email !== null) && (password !== "" && password !== null)) { // Se um nome válido for fornecido:
             let expira = new Date(); // Obtém a data atual.
             expira.setFullYear(expira.getFullYear() + 10); // Define a expiração para 10 anos no futuro.
-            criarCookie("email","password", email,password, expira.toUTCString()); // Cria o cookie com a data de expiração formatada.
+            criarCookie("email", email, expira.toUTCString()); // Cria o cookie com a data de expiração formatada.
+            criarCookie("password", password, expira.toUTCString()); // Cria o cookie com a data de expiração formatada.
         }
     }
 }
