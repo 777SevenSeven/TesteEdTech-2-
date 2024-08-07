@@ -34,7 +34,8 @@ function verificarCookie() {
         alert("Bem-vindo novamente " + email); // Exibe uma mensagem de boas-vindas.
     } else {
         // Se o cookie não existir, solicita o nome do usuário.
-        email = 
+        email = inputEmail.value;
+        password = inputPassword.value;
         if (email !== "" && email !== null) { // Se um nome válido for fornecido:
             let expira = new Date(); // Obtém a data atual.
             expira.setFullYear(expira.getFullYear() + 10); // Define a expiração para 10 anos no futuro.
