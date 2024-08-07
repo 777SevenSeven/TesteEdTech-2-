@@ -30,7 +30,7 @@ function verificarCookie() {
     // Verifica se o cookie de nome "username" existe e o utiliza.
     let email = lerCookie("email");
     let password = lerCookie("password");
-    if (email !== "" && password !== "") { // Se o cookie já existe:
+    if (email !== "" || password !== "") { // Se o cookie já existe:
         alert("Bem-vindo novamente " + email); // Exibe uma mensagem de boas-vindas.
         alert("Confirmando sua senha: " + password);
     } else {
