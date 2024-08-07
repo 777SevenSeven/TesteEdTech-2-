@@ -39,7 +39,7 @@ function verificarCookie() {
         if (email !== "" && email !== null) { // Se um nome válido for fornecido:
             let expira = new Date(); // Obtém a data atual.
             expira.setFullYear(expira.getFullYear() + 10); // Define a expiração para 10 anos no futuro.
-            criarCookie("username", email, expira.toUTCString()); // Cria o cookie com a data de expiração formatada.
+            criarCookie("email","password", email,password, expira.toUTCString()); // Cria o cookie com a data de expiração formatada.
         }
     }
 }
