@@ -1,3 +1,7 @@
+//criação de váriaveis
+inputEmail = document.getElementById("exampleInputEmail1");
+inputPassword = document.getElementById("exampleInputPassword1");
+
 function criarCookie(nome, valor, expira) {
     // Cria um cookie com o nome, valor e data de expiração fornecidos.
     let dtExpira = ""; // Inicializa a data de expiração com um valor vazio.
@@ -24,16 +28,17 @@ function lerCookie(nome) {
 
 function verificarCookie() {
     // Verifica se o cookie de nome "username" existe e o utiliza.
-    let username = lerCookie("username");
-    if (username !== "") { // Se o cookie já existe:
-        alert("Bem-vindo novamente " + username); // Exibe uma mensagem de boas-vindas.
+    let email = lerCookie("email");
+    let password = lerCookie("password");
+    if (email !== "") { // Se o cookie já existe:
+        alert("Bem-vindo novamente " + email); // Exibe uma mensagem de boas-vindas.
     } else {
         // Se o cookie não existir, solicita o nome do usuário.
-        username = prompt("Digite seu nome:", "");
-        if (username !== "" && username !== null) { // Se um nome válido for fornecido:
+        email = 
+        if (email !== "" && email !== null) { // Se um nome válido for fornecido:
             let expira = new Date(); // Obtém a data atual.
             expira.setFullYear(expira.getFullYear() + 10); // Define a expiração para 10 anos no futuro.
-            criarCookie("username", username, expira.toUTCString()); // Cria o cookie com a data de expiração formatada.
+            criarCookie("username", email, expira.toUTCString()); // Cria o cookie com a data de expiração formatada.
         }
     }
 }
