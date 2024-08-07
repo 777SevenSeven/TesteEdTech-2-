@@ -37,7 +37,3 @@ function verificarCookie() {
         }
     }
 }
-
-window.onload = function() {
-    verificarCookie(); // Chama a função de verificação de cookies ao carregar a página.
-};
